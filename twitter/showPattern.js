@@ -49,7 +49,7 @@ ${a0.text}
 
 function copyFavSortText3() {
   ary = [];
-  document.querySelectorAll("div.stream:not(.permalink-replies)>ol:nth-of-type(1) li.stream-item").forEach(l => {
+  document.querySelectorAll("div.stream:not(.permalink-replies)>ol:nth-of-type(1) li.stream-item>div.tweet").forEach(l => {
     ary.push({
       name: l.querySelector("div.content span.FullNameGroup").innerText.replace(/[\r\n]/g, "").trim(),
       atname: l.querySelector("div.content span.username").innerText.trim(),
@@ -67,4 +67,13 @@ ${a0.text}
 --------------------------------------------------------------
 `);
   copy(c);
+}
+
+function showImagesOnly() {
+  document.querySelectorAll("div.stream:not(.permalink-replies)>ol:nth-of-type(1) li.stream-item>div.tweet").forEach(l=>{
+	  let a=l.querySelector("img[data-aria-label-part]");
+      if (a) { l.style.display = ""; }
+      else { l.style.display = "none"; }
+  });
+//  document.querySelectorAll("div.stream:not(.permalink-replies)>ol:nth-of-type(1) li.stream-item>div.tweet").forEach(l=>{l.style.display = "";})
 }
