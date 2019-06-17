@@ -15,3 +15,7 @@
 # regainConsoleLog.js
 
 console.logを取り戻す。
+
+# twitter2thread.js
+
+スレッド形式で表示。
