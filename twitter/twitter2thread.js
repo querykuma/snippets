@@ -1,5 +1,5 @@
 javascript: (() => {
-  wdoc = window.open().document;
+  wdoc = window.open('','_blank').document;
   location_href = window.location.href;
   title = document.title;
   index = 1;
