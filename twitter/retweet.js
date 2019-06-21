@@ -1,4 +1,4 @@
-// uƒŠƒcƒC[ƒg”/ƒcƒC[ƒg‘”vi•\Ž¦•ª‚Ì‚Ýj‚ð•Ô‚·
+// ã€Œãƒªãƒ„ã‚¤ãƒ¼ãƒˆæ•°/ãƒ„ã‚¤ãƒ¼ãƒˆç·æ•°ã€ï¼ˆè¡¨ç¤ºåˆ†ã®ã¿ï¼‰ã‚’è¿”ã™
 (function calcRetweetRate(){
  a=document.querySelectorAll("div.stream:not(.permalink-replies)>ol:nth-of-type(1) li.stream-item>div.tweet");
  b=[...a].map(a0=>{

@@ -1,16 +1,16 @@
-// •¡”ðŒ‚ÅƒtƒBƒ‹ƒ^[‚µ‚½‚¢‚Æ‚«condition‚ð’¼Ú•ÒW
+// è¤‡æ•°æ¡ä»¶ã§ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã—ãŸã„ã¨ãconditionã‚’ç›´æŽ¥ç·¨é›†
 (function filterTweets(){
- text_match=/ƒgƒ‰ƒ“ƒv/;
+ text_match=/ãƒˆãƒ©ãƒ³ãƒ—/;
  cnt_match=0;
  cnt_all=0;
  po=document.getElementById("permalink-overlay");
  if(po.style.display==="none"||!po.querySelector(".tweet"))po=document;
  po.querySelectorAll(".tweet").forEach(t =>{
   cnt_all++;
-  replies=t.querySelector(".ProfileTweet-action--reply>span").getAttribute("data-tweet-stat-count");/*•ÔM”*/
-  favs=t.querySelector(".ProfileTweet-action--favorite>span").getAttribute("data-tweet-stat-count");/*‚¢‚¢‚Ë”*/
-  retweets=t.querySelector(".ProfileTweet-action--retweet>span").getAttribute("data-tweet-stat-count");/*ƒŠƒcƒC[ƒg”*/
-  text=t.getElementsByClassName("tweet-text")[0].innerText;/*ƒeƒLƒXƒg*/
+  replies=t.querySelector(".ProfileTweet-action--reply>span").getAttribute("data-tweet-stat-count");/*è¿”ä¿¡æ•°*/
+  favs=t.querySelector(".ProfileTweet-action--favorite>span").getAttribute("data-tweet-stat-count");/*ã„ã„ã­æ•°*/
+  retweets=t.querySelector(".ProfileTweet-action--retweet>span").getAttribute("data-tweet-stat-count");/*ãƒªãƒ„ã‚¤ãƒ¼ãƒˆæ•°*/
+  text=t.getElementsByClassName("tweet-text")[0].innerText;/*ãƒ†ã‚­ã‚¹ãƒˆ*/
   condition=text.match(text_match);
   if(condition){t.style.display="";cnt_match++;}else{t.style.display="none";}
  });

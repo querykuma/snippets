@@ -1,4 +1,4 @@
-//console.log‚ğæ‚è–ß‚·
+//console.logã‚’å–ã‚Šæˆ»ã™
 iframe=document.getElementsByTagName("iframe")[0];
 if(!iframe){
  iframe=document.createElement("iframe");
