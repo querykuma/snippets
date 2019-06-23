@@ -10,13 +10,31 @@
 
 (function () {
  'use strict';
+ const use_autopagerize = 1; /* autopagerizeを使っていない場合は0に */
+
+ if (!use_autopagerize) {
+  if (document.getElementsByClassName("js-next-page-link").length) {
+   const keydown_link = e => {
+    if (e.key === 'ArrowRight') {
+     document.getElementsByClassName("js-next-page-link")[0].firstElementChild.click();
+    } else if (e.key === 'ArrowLeft') {
+     document.getElementsByClassName("js-previous-page-link")[0].firstElementChild.click();
+    };
+   };
+
+   document.body.userscript_keys = 1;
+   document.addEventListener('keydown', keydown_link);
+
+   return;
+  }
+ }
 
  const delayed = () => {
   clearInterval(timer);
 
   if (!document.getElementsByClassName("st-Pager_next").length) return;
 
-  const keydown = e => {
+  const keydown_pager = e => {
    if (e.key === 'ArrowRight') {
     document.getElementsByClassName("st-Pager_next")[0].firstElementChild.click();
    } else if (e.key === 'ArrowLeft') {
@@ -25,7 +43,7 @@
   };
 
   document.body.userscript_keys = 1;
-  document.addEventListener('keydown', keydown);
+  document.addEventListener('keydown', keydown_pager);
  };
 
  const timer = setInterval(delayed, 500);
