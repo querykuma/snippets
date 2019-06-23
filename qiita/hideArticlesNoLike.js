@@ -6,7 +6,7 @@
  var init = () => {
   delay();
 
-  if (document.body.userscript_keys) return;
+  if (document.body.userscript_keys) return; /* qiitaAddKeysLRArrow.user.jsが動作中 */
 
   if (typeof keydown !== 'undefined') document.removeEventListener('keydown', keydown);
 
@@ -22,13 +22,12 @@
  }
 
  var delay = () => {
-  console.log(debug_cnt++);
+  once = true;
+  document.querySelector(".p-tagShow_mainMiddle").style.display = "none";//トレンドを非表示
+  document.querySelector(".tsf-ArticleList_view").style.minHeight = 'auto';
   var f = a0 => {
-   once = true;
-   document.querySelector(".p-tagShow_mainMiddle").style.display = "none";//トレンドを非表示
-   document.querySelector(".tsf-ArticleList_view").style.minHeight = 'auto';
-   if (a0.querySelector(".tsf-ArticleBody_likeCount").innerText === "0") { a0.style.display = "none" }
-   else { a0.style.display = "" }
+   if (a0.querySelector(".tsf-ArticleBody_likeCount").innerText === "0") { a0.style.display = "none"; }
+   else { a0.style.display = ""; }
   };
   [...document.querySelectorAll(".tsf-ArticleList_view .tsf-Article")].map(f);
  };
@@ -39,7 +38,7 @@
 
  if (typeof observer !== "undefined") observer.disconnect();
 
- var observer = new MutationObserver(records => {
+ observer = new MutationObserver(records => {
   if (once) {
    once = false;
    setTimeout(delay, 300);
@@ -47,7 +46,8 @@
  });
 
  var options = {
-  childList: true
+  childList: true,
+  subtree: true
  };
 
  observer.observe(target, options);
