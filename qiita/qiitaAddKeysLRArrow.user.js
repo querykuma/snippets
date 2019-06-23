@@ -12,9 +12,18 @@
  'use strict';
  const use_autopagerize = 1; /* autopagerizeを使っていない場合は0に */
 
+ const checkTarget = e => {
+  if (e.target.tagName === "INPUT") return true;
+  return false;
+ }
+
  if (!use_autopagerize) {
+
   if (document.getElementsByClassName("js-next-page-link").length) {
    const keydown_link = e => {
+
+    if (checkTarget(e)) return;
+
     if (e.key === 'ArrowRight') {
      document.getElementsByClassName("js-next-page-link")[0].firstElementChild.click();
     } else if (e.key === 'ArrowLeft') {
@@ -35,6 +44,9 @@
   if (!document.getElementsByClassName("st-Pager_next").length) return;
 
   const keydown_pager = e => {
+
+   if (checkTarget(e)) return;
+
    if (e.key === 'ArrowRight') {
     document.getElementsByClassName("st-Pager_next")[0].firstElementChild.click();
    } else if (e.key === 'ArrowLeft') {
