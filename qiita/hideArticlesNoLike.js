@@ -2,8 +2,14 @@
 (function hideArticlesNoLike() {
  var once = true;
  var debug_cnt = 0;
+
  var init = () => {
+  delay();
+
+  if (document.body.userscript_keys) return;
+
   if (typeof keydown !== 'undefined') document.removeEventListener('keydown', keydown);
+
   var keydown = e => {
    if (e.key === 'ArrowRight') {
     document.querySelector(".st-Pager_next").children[0].click();
@@ -11,9 +17,10 @@
     document.querySelector(".st-Pager_prev").children[0].click();
    }
   };
+
   document.addEventListener('keydown', keydown);
-  delay();
  }
+
  var delay = () => {
   console.log(debug_cnt++);
   var f = a0 => {
@@ -25,18 +32,23 @@
   };
   [...document.querySelectorAll(".tsf-ArticleList_view .tsf-Article")].map(f);
  };
+
  init();
 
  var target = document.querySelector(".tsf-ArticleList_view");//次へを押したときMutationObserverが動く
+
  if (typeof observer !== "undefined") observer.disconnect();
+
  var observer = new MutationObserver(records => {
   if (once) {
    once = false;
    setTimeout(delay, 300);
   }
  });
+
  var options = {
   childList: true
  };
+
  observer.observe(target, options);
 })();
