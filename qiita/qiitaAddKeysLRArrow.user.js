@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         qiitaAddKeysLRArrow
+// @name         Qiita Add LRArrow ShortcutKeys
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Qiitaのページで左右矢印キーで前後のページに移動
 // @author       Query Kuma
 // @match        https://qiita.com/*
