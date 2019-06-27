@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Qiita Add LRArrow ShortcutKeys
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.3
 // @description  Qiitaのページで左右矢印キーで前後のページに移動
 // @author       Query Kuma
 // @match        https://qiita.com/*
@@ -10,7 +10,8 @@
 
 (function () {
  'use strict';
- const use_autopagerize = 1; /* autopagerizeを使っていない場合は0に */
+
+ const use_autopagerize = 0; /* autopagerizeを使っている場合は1、autopagerizeを使っていない場合は0に */
 
  const checkTarget = e => {
   if (e.target.tagName === "INPUT") return true;
@@ -33,10 +34,10 @@
 
    document.body.userscript_keys = 1;
    document.addEventListener('keydown', keydown_link);
-
-   return;
   }
  }
+
+ document.activeElement.blur(); /* 検索のときフォーカスを外す */
 
  const delayed = () => {
   clearInterval(timer);
@@ -49,8 +50,10 @@
 
    if (e.key === 'ArrowRight') {
     document.getElementsByClassName("st-Pager_next")[0].firstElementChild.click();
+    scrollTo(0, document.querySelector(".p-tagShow_mainBottom").offsetTop);
    } else if (e.key === 'ArrowLeft') {
     document.getElementsByClassName("st-Pager_prev")[0].firstElementChild.click();
+    scrollTo(0, document.querySelector(".p-tagShow_mainBottom").offsetTop);
    };
   };
 
@@ -58,6 +61,6 @@
   document.addEventListener('keydown', keydown_pager);
  };
 
- const timer = setInterval(delayed, 500);
+ const timer = setInterval(delayed, 1000);
 
 })();
