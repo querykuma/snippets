@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Qiita Hide NG Users
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Qiitaのページで特定ユーザーを非表示にする
 // @author       Query Kuma
 // @match        https://qiita.com/tags/*
@@ -15,7 +15,7 @@
   'use strict';
 
   const NG_USERS = [
-    'Qiita'
+    '',
   ];
 
   var timeout_id = 0;
@@ -41,11 +41,9 @@
   };
 
   const target = document.body;
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach(() => {
-      timeout_id++;
-      setTimeout(delayed, 100, timeout_id);
-    });
+  const observer = new MutationObserver(() => {
+    timeout_id++;
+    setTimeout(delayed, 100, timeout_id);
   });
 
   setTimeout(delayed, 100, timeout_id);
