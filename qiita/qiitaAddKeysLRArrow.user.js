@@ -43,6 +43,6 @@
   document.addEventListener('keydown', keydown_pager);
  };
 
- setTimeout(delayed, 500);
+ setTimeout(delayed, 800);
 
 })();
