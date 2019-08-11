@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Qiita Add LRArrow ShortcutKeys
 // @namespace    http://tampermonkey.net/
-// @version      0.5
+// @version      0.6
 // @description  QiitaのXHRで前後のページを取得するページにおいて左右矢印キーで前後のページに移動
 // @author       Query Kuma
 // @match        https://qiita.com/tags/*
@@ -31,10 +31,17 @@
    }
 
    if (e.key === 'ArrowRight') {
+
     document.getElementsByClassName("st-Pager_next")[0].firstElementChild.click();
     scroll_to_node();
+
    } else if (e.key === 'ArrowLeft') {
-    document.getElementsByClassName("st-Pager_prev")[0].firstElementChild.click();
+
+    var pager_prev = document.getElementsByClassName("st-Pager_prev");
+    if (pager_prev.length) {
+     pager_prev[0].firstElementChild.click();
+    }
+
     scroll_to_node();
    };
 
