@@ -1,5 +1,4 @@
 javascript: (() => {
-  wdoc = window.open('','_blank').document;
   location_href = window.location.href;
   title = document.title;
   index = 1;
@@ -25,7 +24,6 @@ a{font-size: 14px;}
 .frame3{color:#8899A6}
 </style>
 `;
-  wdoc.write(html_head);
 
   function writeTweet(t) {
     pinned_flag = t.querySelector(".js-pinned-text");/*固定されたツイート*/
@@ -89,9 +87,9 @@ ${qt.getElementsByClassName("AdaptiveMedia-badgeText").length ? "video" : ""}
 
     reply_href = t.querySelector(".time>a").getAttribute("href");
 
-    time_title = t.querySelector(".time>a").getAttribute("title") || t.querySelector(".time>a").getAttribute("data-original-title");
-    [, hour, min, year, month, day] = time_title.match(/(\d+):(\d+)[\s-]+(\d+)年(\d+)月(\d+)日$/);
-    date = new Date(`${year}/${month}/${day} ${hour}:${min} PDT`);
+    var time_ms = t.querySelector("._timestamp").getAttribute("data-time-ms");
+    date = new Date(Number(time_ms));
+
     dayOfWeek = "日月火水木金土"[date.getDay()];
     dt = `${date.getFullYear()}/${((date.getMonth() + 1) + "").padStart(2, "0")}/${(date.getDate() + "").padStart(2, "0")}(${dayOfWeek}) ${(date.getHours() + "").padStart(2, "0")}:${(date.getMinutes() + "").padStart(2, "0")}`;
 
@@ -131,6 +129,14 @@ ${retweet_flag ? '<div class="type"><span class="retweet">リツイート</span>
   }
 
   po = document.getElementById("permalink-overlay");
+  if (!po) {
+    console.error("not supported");
+    return;
+  }
+
+  wdoc = window.open('', '_blank').document;
+  wdoc.write(html_head);
+
   if (po.style.display !== "none" && po.querySelector(".tweet")) {
     caseOverlay(po);
   } else {
