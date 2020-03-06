@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Kokkai Add ShortcutKeys
 // @namespace    https://github.com/querykuma/
-// @version      1.0
+// @version      1.01
 // @description  国会動画(衆議院インターネット審議中継、参議院インターネット審議中継)にショートカットキー追加
 // @author       Query Kuma
 // @match        http://www.shugiintv.go.jp/jp/index.php*
@@ -28,11 +28,32 @@
 	var moveTime = 5; //←,→
 	var moveTime2 = 10; //J,L
 	var moveTime3 = 30; //ctrlKey+←,→
+	var moveTime4 = 60; //ctrlKey+shiftKey+←,→
 	var moveVolume = 0.05; //↑,↓
 
 	var event_keydown = (e) => {
-		//ctrlKeyを押している場合
-		if (e.ctrlKey) {
+
+		//ctrlKey+shiftKeyを押している場合
+		if (e.ctrlKey && e.shiftKey && !e.altKey) {
+			switch (e.code) {
+				case 'ArrowLeft':
+					e.preventDefault();
+					video.currentTime -= moveTime4;
+					return;
+
+				case 'ArrowRight':
+					e.preventDefault();
+					video.currentTime += moveTime4;
+					return;
+
+				default:
+					//ctrlKey+shiftKeyを押している場合は以降何もしない
+					return;
+			}
+		}
+
+		//ctrlKeyだけを押している場合
+		if (e.ctrlKey && !e.shiftKey && !e.altKey) {
 			switch (e.code) {
 				case 'ArrowLeft':
 					e.preventDefault();
