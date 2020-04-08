@@ -1,9 +1,11 @@
 // ==UserScript==
 // @name         Qiita Hide NG Users
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/querykuma/snippets/
 // @version      0.2
 // @description  Qiitaのページで特定ユーザーを非表示にする
 // @author       Query Kuma
+// @license      MIT
+// @copyright    Copyright (c) 2019, by Query Kuma
 // @match        https://qiita.com/tags/*
 // @match        https://qiita.com/organizations/*
 // @match        https://qiita.com/

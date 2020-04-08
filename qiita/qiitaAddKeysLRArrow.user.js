@@ -4,6 +4,8 @@
 // @version      0.7
 // @description  QiitaのXHRで前後のページを取得するページにおいて左右矢印キーで前後のページに移動
 // @author       Query Kuma
+// @license      MIT
+// @copyright    Copyright (c) 2019, by Query Kuma
 // @match        https://qiita.com/*
 // @grant        none
 // ==/UserScript==
