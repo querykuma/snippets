@@ -1,9 +1,11 @@
 // ==UserScript==
 // @name         Kokkai Add ShortcutKeys
-// @namespace    https://github.com/querykuma/
+// @namespace    https://github.com/querykuma/snippets/
 // @version      1.03
 // @description  国会動画(衆議院インターネット審議中継, 参議院インターネット審議中継)にショートカットキー追加
 // @author       Query Kuma
+// @license      MIT
+// @copyright    Copyright (c) 2020, by Query Kuma
 // @match        http*://www.shugiintv.go.jp/jp/index.php*
 // @match        https://www.webtv.sangiin.go.jp/webtv/detail.php*
 // @grant        GM.getValue
