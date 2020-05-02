@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Qiita Hide NG Users
 // @namespace    https://github.com/querykuma/snippets/
-// @version      0.2
+// @version      0.3
 // @description  Qiitaのページで特定ユーザーを非表示にする
 // @author       Query Kuma
 // @license      MIT
@@ -23,7 +23,7 @@
   var timeout_id = 0;
 
   const hide_ng_users = () => {
-    document.querySelectorAll("article,.tr-Item,.of-PopularItem,.of-ItemLink").forEach(article => {
+    document.querySelectorAll(".tsf-Article,.tr-Item,.of-PopularItem,.of-ItemLink").forEach(article => {
 
       // tags, organizations, itemsなどで統一されていないので長くなった。
       const user = article.querySelector(".tsf-ArticleBody_author,.tst-ArticleBody_author,.ItemLink__info>a,.tr-Item_author,.of-PopularItem_author,.of-ItemLink_author").textContent;
