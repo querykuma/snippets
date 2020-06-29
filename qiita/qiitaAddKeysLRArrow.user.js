@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Qiita Add LRArrow ShortcutKeys
 // @namespace    https://github.com/querykuma/snippets/
-// @version      0.7
+// @version      0.8
 // @description  QiitaのXHRで前後のページを取得するページにおいて左右矢印キーで前後のページに移動
 // @author       Query Kuma
 // @license      MIT
@@ -19,22 +19,50 @@
         return;
     } else {
 
+        const is_url_target = (category, rest) => {
+
+            if (["tags", "organizations"].indexOf(category) >= 0) {
+                return true;
+            }
+
+            if (rest.search(/(lgtms|following_users|comments|edit_requests)/) === 0) {
+                return true;
+            }
+
+            return false;
+        }
+
         // 頭の"/"を除いたpathname
         var pathname2 = location.pathname.slice(1);
-        var m = pathname2.match(/([^/]+)\//);
+        var m = pathname2.match(/([^/]+)\/(.*)?/);
         if (m) {
 
             var category = m[1];
-            if (["tags", "organizations"].indexOf(category) === -1) return;
+            var rest = m[2];
+            if (!is_url_target(category, rest)) {
+                return;
+            }
         }
         // 2つ目の"/"がなければユーザーページのはず
     }
 
     const delayed = () => {
 
-        if (!document.getElementsByClassName("st-Pager_next").length) return;
+        if (document.getElementsByClassName("st-Pager_next").length) {
 
-        if (document.getElementsByClassName("st-Pager_next")[0].querySelector("a[href]")) return;
+            if (document.getElementsByClassName("st-Pager_next")[0].querySelector("a[href]")) {
+                return;
+            }
+
+        } else if (document.getElementsByClassName("st-Pager_prev").length) {
+
+            if (document.getElementsByClassName("st-Pager_prev")[0].querySelector("a[href]")) {
+                return;
+            }
+        } else {
+            return;
+        }
+
 
         const keydown_pager = e => {
 
