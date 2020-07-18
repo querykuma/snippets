@@ -1,6 +1,6 @@
 /* eslint-disable max-lines-per-function,func-names,require-jsdoc */
 /*
- * no-in-array.js v1.1.0
+ * no-in-array.js v1.1.1
  * https://github.com/querykuma/snippets/blob/master/eslint-rules/no-in-array.js
  * (c) 2020 Query Kuma
  * Released under the MIT License
@@ -75,8 +75,6 @@ module.exports = {
         };
 
         const create_report = (node, message) => {
-
-            const a = context.getDeclaredVariables(node);
 
             const fix = (fixer) => fixer.replaceText(
                 node,
