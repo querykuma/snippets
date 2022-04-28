@@ -73,7 +73,7 @@ module.exports = {
                     const fix = (fixer) => {
                         if (node.arguments[1]) {
                             var text1 = sourceCode.getText(node.arguments[1]);
-                            var result = text1.replace(/(?=['"])$/u, "u");
+                            var result = text1.replace(/(?=['"]$)/u, "u");
                             return fixer.replaceText(node.arguments[1], result);
                         } else {
                             return fixer.insertTextAfter(node.arguments[0], ', "u"');
