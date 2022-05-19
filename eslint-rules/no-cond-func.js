@@ -109,7 +109,7 @@ module.exports = {
 
         const find_var = (name) => {
 
-            for (let scope = context.getScope(); scope.upper; scope = scope.upper) {
+            for (let scope = context.getScope(); scope; scope = scope.upper) {
 
                 const var_find = scope.variables.find((v) => v.name === name);
 
