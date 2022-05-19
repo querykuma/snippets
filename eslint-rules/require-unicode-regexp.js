@@ -2,6 +2,7 @@
  * Copyright (c) 2013 ESLint Team
  * Released under the MIT license
  * https://github.com/eslint/eslint/blob/main/LICENSE
+ * Portions Copyright (c) 2022 Query Kuma
  *
  * @fileoverview Rule to enforce the use of `u` flag on RegExp.
  * @author Toru Nagashima
